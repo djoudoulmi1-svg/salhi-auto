@@ -12,6 +12,7 @@ export function ConsentBanner() {
   useEffect(() => { setVisible(!localStorage.getItem(storageKey)); }, []);
   const save = (allowAnalytics: boolean) => {
     localStorage.setItem(storageKey, JSON.stringify({ necessary: true, analytics: allowAnalytics, consentedAt: new Date().toISOString(), policyVersion: "1" }));
+    void fetch("/api/consent", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ analytics: allowAnalytics, policyVersion: "1" }) }).catch(() => undefined);
     setVisible(false);
   };
   if (!visible) return null;

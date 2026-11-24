@@ -2,6 +2,7 @@ import { createSupabaseAdmin } from "@/lib/supabase-admin";
 
 export type Vehicle = {
   id: string;
+  databaseId: string;
   slug: string;
   brand: string;
   name: string;
@@ -21,6 +22,8 @@ export type Vehicle = {
   images: string[];
   featured: boolean;
   discountPrice: number | null;
+  discountPercentage: number | null;
+  discountStartsAt: string | null;
   discountEndsAt: string | null;
   createdAt: string;
 };
@@ -45,6 +48,8 @@ type VehicleRow = {
   images: string[] | null;
   featured: boolean;
   discount_price_dzd: number | string | null;
+  discount_percentage: number | null;
+  discount_starts_at: string | null;
   discount_ends_at: string | null;
   created_at: string;
 };
@@ -53,6 +58,7 @@ function mapVehicle(row: VehicleRow): Vehicle {
   const images = row.images || [];
   return {
     id: row.slug,
+    databaseId: row.id,
     slug: row.slug,
     brand: row.brand,
     name: row.model,
@@ -72,6 +78,8 @@ function mapVehicle(row: VehicleRow): Vehicle {
     images,
     featured: row.featured,
     discountPrice: row.discount_price_dzd == null ? null : Number(row.discount_price_dzd),
+    discountPercentage: row.discount_percentage == null ? null : Number(row.discount_percentage),
+    discountStartsAt: row.discount_starts_at,
     discountEndsAt: row.discount_ends_at,
     createdAt: row.created_at,
   };

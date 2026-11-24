@@ -6,7 +6,7 @@ export async function requireStaff() {
   const { data } = await supabase.auth.getClaims();
   const id = data?.claims?.sub;
   if (!id) redirect("/admin/login");
-  const { data: profile } = await supabase.from("profiles").select("username,full_name,role,is_active").eq("id", id).maybeSingle();
+  const { data: profile } = await supabase.from("profiles").select("id,username,full_name,role,is_active,preferred_language").eq("id", id).maybeSingle();
   if (!profile?.is_active) redirect("/admin/login?error=disabled");
   return profile;
 }

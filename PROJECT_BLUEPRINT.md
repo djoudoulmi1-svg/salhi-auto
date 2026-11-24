@@ -50,7 +50,8 @@
 
 ## Implementation status
 
-- Next.js + Tailwind + Supabase + Vercel stack is configured. Public inventory reads from Supabase and displays only available vehicles; no sample cars or demo figures are used.
-- Owner/manager inventory tools create and publish cars, upload compressed photos, manage status, and confirm permanent deletion. Vehicle details, favorites, comparison, filters, contact links, legal pages, and responsive Arabic homepage use live inventory.
-- Remaining blueprint work includes customer inquiry submissions/tracking and notifications, full admin translation and permission controls, brand management, audit/backup automation, analytics, editable SEO and branded catalogue PDFs.
-- Floating contact buttons remain omitted until the unanswered preference in question 161 is confirmed.
+- Next.js + Tailwind + Supabase + Vercel is live. Public inventory reads only available vehicles; the catalogue, filters, favourites, two-car comparison, detail pages, phone/WhatsApp links, and printable stock catalogue use actual database records.
+- Owner and manager inventory tools add, edit, publish, reserve, sell, and delete vehicles; compress/reorder photos; set Arabic/French/English descriptions; hide prices; and schedule fixed-amount or percentage discounts.
+- Public inquiries can be submitted from vehicle detail pages or the homepage, require customer consent, receive a reference code, and expose a privacy-limited tracking page. Staff can update status, assign employees, and keep a contact-note history; the dashboard polls for new requests. Inquiry email and WhatsApp alerts need an approved sender/service configuration.
+- The owner can edit public contact details, map/social links, about text, and homepage SEO text. Admin remains Arabic-only; full Arabic/French/English UI, per-employee custom permissions, GA4, scheduled backups, adaptive CAPTCHA, branded QR PDFs, and audit-log management are still outstanding. GA4 also needs a measurement ID.
+- Floating contact controls remain omitted until question 161 is answered. Current default website content is Arabic; French and English are available for vehicle descriptions only.
