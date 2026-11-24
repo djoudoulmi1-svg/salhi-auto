@@ -1,0 +1,20 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import type { DemoCar } from "@/lib/demo-cars";
+
+export function CarDetail({ car, related }: { car: DemoCar; related: DemoCar[] }) {
+  const [copied, setCopied] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
+  const share = async () => {
+    const url = window.location.href;
+    if (navigator.share) await navigator.share({ title: `${car.brand} ${car.name} | Salhi Auto`, url });
+    else { await navigator.clipboard.writeText(url); setCopied(true); window.setTimeout(() => setCopied(false), 2000); }
+  };
+  const shareFacebook = () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, "_blank", "noopener,noreferrer");
+  const money = new Intl.NumberFormat("fr-DZ").format(car.price);
+  const phone = "+21329712727";
+  const details: [string, string][] = [["سنة الصنع", String(car.year)], ["المسافة المقطوعة", `${new Intl.NumberFormat("fr-DZ").format(car.km)} كم`], ["المحرك", car.engine], ["الوقود", car.fuel], ["ناقل الحركة", car.transmission], ["اللون", car.color], ["الحالة", car.condition]];
+  return <main className="detail-page" dir="rtl"><header className="detail-top"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SALHI <b>AUTO</b><small>ورقلة · الجزائر</small></span></Link><Link href="/#cars">← العودة إلى السيارات</Link></header><nav className="breadcrumb"><Link href="/">الرئيسية</Link><span>/</span><Link href="/#cars">السيارات</Link><span>/</span>{car.brand} {car.name}</nav><section className="detail-layout"><div className="detail-media"><div className="detail-main-photo" style={{ backgroundImage: `url('${car.images[selectedImage] || car.image}')` }} /><div className="detail-thumbnails">{car.images.map((src, index) => <button key={`${src}-${index}`} className={selectedImage === index ? "selected" : ""} onClick={() => setSelectedImage(index)} aria-label={`عرض الصورة ${index + 1}`} style={{ backgroundImage: `url('${src}')` }} />)}</div><p>الصورة الرئيسية</p></div><div className="detail-info"><p className="eyebrow">{car.brand} · {car.year}</p><h1>{car.name}</h1><p className="detail-condition">{car.condition} · متاحة الآن</p><strong className="detail-price">{money} <small>دج</small></strong><p className="detail-description">سيارة مختارة من Salhi Auto. تواصل معنا لمعرفة التفاصيل وترتيب زيارة للمعرض في ورقلة.</p><div className="detail-actions"><a className="gold-button" href={`https://wa.me/${phone.replace("+", "")}?text=${encodeURIComponent(`أرغب في الاستفسار عن ${car.brand} ${car.name}`)}`}>استفسر عبر WhatsApp ↗</a><a className="outline-button dark-outline" href={`tel:${phone}`}>اتصل بالمعرض</a></div><div className="share-actions"><button onClick={share}>{copied ? "تم نسخ الرابط" : "مشاركة السيارة"}</button><button onClick={shareFacebook}>Facebook</button><button onClick={() => window.print()}>طباعة / حفظ PDF</button></div></div></section><section className="detail-specs"><p className="eyebrow">المواصفات</p><h2>تفاصيل السيارة</h2><div className="spec-cards">{details.slice(0, 4).map(([label, value]) => <article key={label}><span>{label}</span><b>{value}</b></article>)}</div><div className="detail-table"><table><tbody>{details.map(([label, value]) => <tr key={label}><th>{label}</th><td>{value}</td></tr>)}<tr><th>السعر</th><td>{money} دج</td></tr></tbody></table></div><h3>التجهيزات</h3><ul className="features-list">{car.features.map((feature) => <li key={feature}>{feature}</li>)}</ul></section>{related.length > 0 && <section className="related-cars"><h2>سيارات أخرى قد تهمك</h2><div className="car-grid">{related.map((item) => <Link href={`/cars/${item.id}`} key={item.id} className="related-card"><div style={{ backgroundImage: `url('${item.image}')` }} /><b>{item.brand} {item.name}</b><span>{new Intl.NumberFormat("fr-DZ").format(item.price)} دج</span></Link>)}</div></section>}<footer className="detail-footer"><span>© 2026 SALHI AUTO · ورقلة، الجزائر</span><a href="tel:+21329712727">029 71 27 27</a></footer></main>;
+}

@@ -1,0 +1,15 @@
+import Link from "next/link";
+import { requireStaff } from "@/lib/staff-session";
+import { IdleSignOut, SignOutButton } from "@/components/admin-session-controls";
+
+const vehicles = [
+  ["Mercedes-Benz", "C 220d", "2022", "6 800 000 دج", "متاحة", "green"],
+  ["BMW", "320i Serie 3", "2021", "5 900 000 دج", "متاحة", "green"],
+  ["Volkswagen", "Golf 8 R-Line", "2023", "5 400 000 دج", "محجوزة", "amber"],
+  ["Audi", "A4 S-Line", "2020", "5 250 000 دج", "مباعة", "gray"],
+];
+
+export default async function AdminPage() {
+  const profile = await requireStaff();
+  return <main className="admin-shell" dir="rtl"><IdleSignOut/><aside className="admin-side"><Link className="brand" href="/"><span className="brand-mark">S</span><span>SALHI <b>AUTO</b><small>لوحة الإدارة</small></span></Link><p className="admin-label">القائمة الرئيسية</p><Link className="side-link selected" href="/admin">▦　 نظرة عامة</Link><a className="side-link" href="#vehicles">▣　 السيارات</a><a className="side-link" href="#inquiries">✉　 طلبات العملاء <i>3</i></a>{profile.role === "owner" && <Link className="side-link" href="/admin/staff">♙　 الموظفون والحسابات</Link>}<div className="side-bottom"><span className="avatar">SA</span><span>{profile.full_name || profile.username}<small>{profile.role === "owner" ? "مالك المعرض" : profile.role === "manager" ? "مدير" : "موظف"}</small></span><SignOutButton/></div></aside><section className="admin-main"><header className="admin-header"><div><p className="admin-label">إدارة Salhi Auto</p><h1>مرحباً {profile.full_name || profile.username} 👋</h1><p>إليك ملخص نشاط معرضك اليوم.</p></div><div><a className="outline-button dark-outline" href="/">↗　عرض الموقع</a></div></header><div className="demo-note">معاينة أولية — الأرقام والسيارات المعروضة تجريبية.</div><div className="admin-stats"><article><span>السيارات المتاحة</span><strong>24</strong><small>في المخزون الحالي</small><b>▣</b></article><article><span>طلبات جديدة</span><strong>08</strong><small>تحتاج إلى متابعة</small><b>✉</b></article><article><span>مشاهدات هذا الشهر</span><strong>1,250</strong><small>↑ 12% عن الشهر الماضي</small><b>◉</b></article><article><span>سيارات مباعة</span><strong>12</strong><small>خلال هذا الشهر</small><b>✓</b></article></div><div className="admin-table-head" id="vehicles"><div><h2>أحدث السيارات</h2><p>إدارة مخزون السيارات وحالاتها.</p></div><button className="gold-button" disabled>＋　إضافة سيارة</button></div><div className="admin-table-wrap"><table><thead><tr><th>السيارة</th><th>السنة</th><th>السعر</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody>{vehicles.map(([brand,model,year,price,status,color])=><tr key={model}><td><span className="table-car-icon">▰</span><b>{brand}</b><small>{model}</small></td><td>{year}</td><td>{price}</td><td><span className={`status ${color}`}>{status}</span></td><td><button className="dots" disabled>···</button></td></tr>)}</tbody></table></div><div className="inquiry-preview" id="inquiries"><div><h2>طلبات العملاء</h2><span className="status amber">3 جديدة</span></div><p>ستظهر هنا طلبات الاستفسار بعد ربط قاعدة البيانات.</p></div></section></main>;
+}
