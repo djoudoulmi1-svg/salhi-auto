@@ -42,16 +42,15 @@
 - The original discussion selected “C” for several alternatives, but no option identifier is saved for question 161, so it is not treated as a user decision.
 - Defaults used for the first pass: 12 vehicles per page, automatic catalogue PDF generation on request, weekly backups, 15-minute idle expiry and availability check, three-month inquiry archive/audit retention.
 
-## Inputs required before production launch
+## Inputs still needed
 
-- Supabase project URL and publishable key; database migration must be applied and an owner account created.
-- A separate Salhi Auto Supabase project is required. The only connected Supabase project currently contains an unrelated education platform, so it was inspected read-only and left untouched.
-- Verified WhatsApp destination and notification setup, plus email sender credentials.
-- Real vehicle inventory/photos and final confirmation of the showroom logo. Current vehicle cards and external photos are placeholders.
-- Vercel account/project and domain choice. Analytics measurement ID is needed to enable GA4.
+- Real vehicle inventory and approved showroom logo.
+- Email sender details and analytics measurement ID if those features are enabled.
+- Floating contact control choice (question 161 remains unanswered); option C is recommended but not selected.
 
 ## Implementation status
 
-- Homepage, responsive luxury styling, initial admin preview and initial Supabase schema exist. The homepage vehicle hero now rotates every five seconds with arrows, dots and a link to the shown vehicle. A consent banner records the visitor's choice, and privacy, terms and cookie pages are present as preview drafts. Staff login, one-time owner setup and owner-managed staff accounts are implemented pending a dedicated Supabase project and environment secrets.
-- Catalogue now has live search and filters, a price range control, browser-persisted favorites, a maximum-two comparison bar/table, pagination, a favorites page and a dedicated comparison page. Vehicle cards open SEO-titled detail pages with specifications, selectable photo thumbnails, contact links, sharing and print-to-PDF.
-- Current catalog uses four sample records. Supabase, authentication, inquiry delivery, PDF generation, legal/consent flows, analytics and live inventory are not connected yet; do not present the preview figures as real shop data.
+- Next.js + Tailwind + Supabase + Vercel stack is configured. Public inventory reads from Supabase and displays only available vehicles; no sample cars or demo figures are used.
+- Owner/manager inventory tools create and publish cars, upload compressed photos, manage status, and confirm permanent deletion. Vehicle details, favorites, comparison, filters, contact links, legal pages, and responsive Arabic homepage use live inventory.
+- Remaining blueprint work includes customer inquiry submissions/tracking and notifications, full admin translation and permission controls, brand management, audit/backup automation, analytics, editable SEO and branded catalogue PDFs.
+- Floating contact buttons remain omitted until the unanswered preference in question 161 is confirmed.
