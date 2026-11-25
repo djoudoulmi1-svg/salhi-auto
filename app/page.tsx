@@ -4,6 +4,7 @@ import { HeroCarousel } from "@/components/hero-carousel";
 import { getVehicles } from "@/lib/vehicles";
 import { InquiryForm } from "@/components/inquiry-form";
 import { getSiteSettings } from "@/lib/site-settings";
+import { MobileMenu } from "@/components/mobile-menu";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +17,7 @@ export default async function Home() {
   const [vehicles, settings] = await Promise.all([getVehicles({ availableOnly: true }), getSiteSettings()]);
   const brands = [...new Set(vehicles.map((vehicle) => vehicle.brand))];
   return <main>
-    <header className="topbar"><a className="brand" href="#home"><BrandLogo /></a><nav><a href="#home">الرئيسية</a><a href="#cars">السيارات</a><a href="#brands">العلامات</a><a href="#about">عن المعرض</a><a href="#location">الموقع</a></nav><div className="header-actions"><a className="staff-login-button" href="/admin/login">دخول الفريق</a><a className="outline-button" href="#contact">تواصل معنا <span>↗</span></a><button className="menu" aria-label="القائمة">☰</button></div></header>
+    <header className="topbar"><a className="brand" href="#home"><BrandLogo /></a><nav><a href="#home">الرئيسية</a><a href="#cars">السيارات</a><a href="#brands">العلامات</a><a href="#about">عن المعرض</a><a href="#location">الموقع</a></nav><div className="header-actions"><a className="staff-login-button" href="/admin/login">دخول الفريق</a><a className="outline-button" href="#contact">تواصل معنا <span>↗</span></a><MobileMenu /></div></header>
     <section className="hero" id="home"><HeroCarousel cars={vehicles} /><div className="hero-shade"/><div className="hero-content"><p className="eyebrow gold">معرض صالحي أوتو <span>✦</span></p><h1>سيارتك القادمة<br/>تبدأ <em>من هنا.</em></h1><p className="hero-copy">سيارات جديدة ومستعملة من معرض Salhi Auto.<br/>تعرّف على السيارات المتاحة في ورقلة والجزائر.</p><div className="hero-buttons"><a className="gold-button" href="#cars">تصفّح السيارات <span>←</span></a><a className="play-link" href="#about">عن المعرض <span>↗</span></a></div><div className="hero-note"><span>✦</span> ورقلة · نخدم زبائننا في جميع أنحاء الجزائر</div></div><div className="hero-bottom"><span>ورقلة، الجزائر</span><span>استكشف المخزون <b>↓</b></span></div></section>
     <section className="trust-strip"><div><strong>01</strong><span>سيارات المعرض<br/><small>جديدة ومستعملة</small></span></div><div><strong>02</strong><span>معلومات واضحة<br/><small>تفاصيل السيارة وسعرها</small></span></div><div><strong>03</strong><span>تواصل مباشر<br/><small>الهاتف وواتساب</small></span></div><p>اختر سيارتك القادمة<br/><b>من Salhi Auto.</b></p></section>
     <section className="inventory section" id="cars"><div className="section-head"><div><p className="eyebrow">مخزون المعرض <span>✦</span></p><h2>السيارات <em>المتاحة.</em></h2><p className="muted">المعروض هنا هو المخزون المتاح لدى Salhi Auto فقط.</p></div><div className="catalog-header-actions"><span className="text-link">الأسعار بالدينار الجزائري</span><a className="text-link" href="/catalogue">دليل الطباعة / PDF ↗</a></div></div><InteractiveCatalog cars={vehicles} /></section>
