@@ -25,3 +25,7 @@
 .vehicle-list-filters{display:flex;gap:10px;margin:12px 0}.vehicle-list-filters input,.vehicle-list-filters select{border:1px solid #dedbd3;background:white;padding:9px 12px;font-size:11px}.vehicle-list-filters input{flex:1;min-width:140px}.vehicle-image-list li[draggable=true]{cursor:grab}.vehicle-image-list li[draggable=true]:active{cursor:grabbing}
 
 .brand-logo{display:block;width:72px;height:72px;flex:0 0 auto}.admin-side .brand-logo{width:74px;height:74px}.saved-page header .brand-logo{width:76px;height:76px}footer .brand-logo{width:74px;height:74px}@media(max-width:900px){.topbar .brand-logo{width:62px;height:62px}}
+
+
+/* Keep vehicle details balanced at standard and zoomed browser widths. */
+.detail-page{overflow-x:clip}.detail-layout{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}.detail-layout>*{min-width:0}.detail-main-photo{width:100%;height:auto;aspect-ratio:4/3;min-height:300px;max-height:500px;background-size:contain;background-repeat:no-repeat;background-color:#f0efeb}.detail-info h1{line-height:1.45}.detail-description{overflow-wrap:anywhere}@media(max-width:900px){.detail-layout{grid-template-columns:minmax(0,1fr);gap:20px}.detail-main-photo{aspect-ratio:16/10;min-height:0;max-height:460px}}@media(max-width:700px){.detail-main-photo{aspect-ratio:16/10;min-height:0;height:auto}}
