@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 90" fill="none">
+  <rect width="180" height="90" rx="8" fill="#11110f"/>
+  <g stroke="#e2e0e4" stroke-linecap="round">
+    <ellipse cx="90" cy="45" rx="83" ry="36" stroke-width="2.4"/>
+    <path d="M20 43c10-3 16-7 22-14l9-10C61 11 73 7 89 7c17 0 28 4 39 12l11 9c6 5 12 8 22 10" stroke-width="2.1"/>
+    <path d="M31 43c9-1 16-4 22-10l10-8c7-5 16-8 27-8 14 0 23 3 32 8l12 9c7 5 13 8 23 9M76 18l-8 14m39-14 10 14M28 46h124" stroke-width="1.8"/>
+  </g>
+  <text x="90" y="60" text-anchor="middle" fill="#e2e0e4" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="1">SALHI AUTO</text>
+</svg>

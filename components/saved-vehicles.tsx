@@ -1,4 +1,5 @@
 "use client";
+import { BrandLogo } from "@/components/brand-logo";
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
@@ -17,7 +18,7 @@ function useSavedCars(key: string, cars: Vehicle[]) {
 }
 
 function SavedLayout({ children }: { children: React.ReactNode }) {
-  return <main className="saved-page" dir="rtl"><header><Link className="brand" href="/"><img className="brand-logo" src="/salhi-auto-logo.png" alt="SALHI AUTO" /></Link><Link className="saved-back" href="/#cars">العودة إلى الموقع ←</Link></header>{children}</main>;
+  return <main className="saved-page" dir="rtl"><header><Link className="brand" href="/"><BrandLogo /></Link><Link className="saved-back" href="/#cars">العودة إلى الموقع ←</Link></header>{children}</main>;
 }
 
 export function FavoritesView({ cars }: { cars: Vehicle[] }) {
