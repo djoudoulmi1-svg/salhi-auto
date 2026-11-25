@@ -33,3 +33,7 @@
 
 /* Print vehicle photos as images, including the first photo on each detail PDF. */
 .stock-catalogue-photo{overflow:hidden;min-width:0}.stock-catalogue-photo img{display:block;width:100%;height:100%;min-height:165px;object-fit:cover}.detail-main-photo img{display:block;width:100%;height:100%;object-fit:contain}.detail-print-photo{display:none}@media print{.stock-catalogue-photo img{min-height:48mm}.detail-main-photo{display:none!important}.detail-print-photo{display:block!important;width:100%;max-height:85mm;object-fit:contain;break-inside:avoid}.detail-thumbnails{display:none!important}.detail-media{break-inside:avoid}}
+
+
+/* White logo remains visible on light pages while its image background stays transparent. */
+.stock-catalogue>header .brand-logo,.staff-auth-page>.brand .brand-logo{filter:invert(1)}
