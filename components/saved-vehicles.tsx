@@ -17,7 +17,7 @@ function useSavedCars(key: string, cars: Vehicle[]) {
 }
 
 function SavedLayout({ children }: { children: React.ReactNode }) {
-  return <main className="saved-page" dir="rtl"><header><Link className="brand" href="/"><span className="brand-mark">S</span><span>SALHI <b>AUTO</b><small>ورقلة · الجزائر</small></span></Link><Link className="saved-back" href="/#cars">العودة إلى الموقع ←</Link></header>{children}</main>;
+  return <main className="saved-page" dir="rtl"><header><Link className="brand" href="/"><img className="brand-logo" src="/salhi-auto-logo.png" alt="SALHI AUTO" /></Link><Link className="saved-back" href="/#cars">العودة إلى الموقع ←</Link></header>{children}</main>;
 }
 
 export function FavoritesView({ cars }: { cars: Vehicle[] }) {
